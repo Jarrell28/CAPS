@@ -4,11 +4,6 @@
 
 ## Jarrell Houston
 
-**Dependencies**
-
-socket.io
-faker.js
-
 **Initialize Application**
 
 ```node caps.js```

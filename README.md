@@ -4,7 +4,7 @@
 
 ## Jarrell Houston
 
-## Dependencies
+**Dependencies**
 
 faker.js
 

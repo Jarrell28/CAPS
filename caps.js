@@ -7,27 +7,31 @@ const caps = io.of('/caps');
 
 caps.on('connection', socket => {
 
+    socket.on('join', room => {
+        console.log(`Room ${room}: client joined`);
+        socket.join(room);
+    })
+
     socket.on('pickup', (payload) => {
-        let date = new Date(Date.now());
-        console.log('EVENT: pickup');
-        console.log(`time: ${date}`)
-        console.log("payload:", payload);
-        socket.broadcast.emit('pickup', payload);
+        logger('pickup', payload);
+        caps.emit('pickup', payload);
     });
 
     socket.on('in-transit', payload => {
-        let date = new Date(Date.now());
-        console.log('EVENT: in-transit');
-        console.log(`time: ${date}`)
-        console.log("payload:", payload);
+        logger('in-transit', payload);
     });
 
     socket.on('delivered', payload => {
-        let date = new Date(Date.now());
-        console.log('EVENT: delivered');
-        console.log(`time: ${date}`)
-        console.log("payload:", payload);
-        socket.broadcast.emit('delivered', payload);
+        logger('delivered', payload);
+
+        caps.to(payload.storeName).emit('delivered', payload);
     });
 
 })
+
+function logger(event, payload) {
+    let date = new Date(Date.now());
+    console.log(`EVENT: ${event}`);
+    console.log(`time: ${date}`)
+    console.log("payload:", payload);
+}

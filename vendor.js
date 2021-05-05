@@ -9,6 +9,8 @@ const storeName = "Best Buyers"
 
 const socket = io.connect(`${HOST}/caps`);
 
+socket.emit("join", storeName);
+
 socket.on('delivered', thankYou);
 
 function thankYou(payload) {

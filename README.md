@@ -15,7 +15,7 @@ faker.js
 
 ## UML
 
-![image](https://user-images.githubusercontent.com/33704616/116482232-62965e00-a84a-11eb-8970-5f5fb784ff0e.png)
+![image](https://user-images.githubusercontent.com/33704616/117159109-a24ad180-ad85-11eb-8cde-1ed010d5d0bb.png)
 
 
 

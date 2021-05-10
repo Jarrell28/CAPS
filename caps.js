@@ -2,6 +2,7 @@
 
 const PORT = process.env.PORT || 3000;
 const io = require('socket.io')(PORT);
+const uuid = require('uuid').v4;
 
 const caps = io.of('/caps');
 
@@ -23,9 +24,25 @@ caps.on('connection', socket => {
 
     socket.on('delivered', payload => {
         logger('delivered', payload);
-
-        caps.to(payload.storeName).emit('delivered', payload);
+        //sending to queue-server and vendor
+        let messageId = uuid();
+        caps.emit('delivered', { clientId: payload.storeName, messageId, payload });
     });
+
+    //sending event to queue server
+    socket.on('getAll', payload => {
+        caps.emit('getAll', { clientId: payload.clientId });
+    })
+
+    //sending messages back to client
+    socket.on('getMessages', payload => {
+        caps.to(payload.clientId).emit('getMessages', payload.data);
+    })
+
+    //sending received to queue server
+    socket.on('received', payload => {
+        caps.emit('received', payload);
+    })
 
 })
 

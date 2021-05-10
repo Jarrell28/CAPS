@@ -5,7 +5,6 @@ const HOST = process.env.HOST || 'http://localhost:3000';
 
 const socket = io.connect(`${HOST}/caps`);
 
-
 const queue = {
 
 }
@@ -28,6 +27,4 @@ socket.on('getAll', payload => {
 socket.on('delivered', payload => {
     //add the message to the queue
     queue[payload.clientId] = { ...queue[payload.clientId], [payload.messageId]: payload.payload };
-
-
 })

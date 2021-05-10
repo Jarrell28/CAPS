@@ -4,10 +4,14 @@
 
 ## Jarrell Houston
 
-**Dependencies**
+## Setup
 
-socket.io
-faker.js
+**env**
+
+``` PORT ``` - 3000
+
+``` HOST ``` - http://localhost:3000
+
 
 **Initialize Application**
 
@@ -17,10 +21,14 @@ faker.js
 
 ```node vendor.js```
 
+```node api-server.js```
+
+```node queue-server.js```
+
 
 ## UML
 
-![image](https://user-images.githubusercontent.com/33704616/117160511-c6f37900-ad86-11eb-9009-d5e713a4de45.png)
+![image](https://user-images.githubusercontent.com/33704616/117212099-819f6d80-adbf-11eb-9310-893a29ba084a.png)
 
 
 
